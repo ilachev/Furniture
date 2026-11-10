@@ -35,7 +35,7 @@ unset($arProp);
 $component = $this->getComponent();
 $arParams = $component->applyTemplateModifications();
 
-$arResult['CHUNKED_DISPLAY_PROPERTIES'] = array_chunk($arResult['PROPERTIES']['DISPLAY_PROPERTIES'], 3);
+$arResult['CHUNKED_DISPLAY_PROPERTIES'] = array_chunk($arResult['DISPLAY_PROPERTIES'] ?? [], 3);
 if (!empty($arResult['PROPERTIES']['MANUFACTURER']['ITEM_VALUE']['UF_FILE'])) {
     $arFileTmp = CFile::ResizeImageGet(
         $arResult['PROPERTIES']['MANUFACTURER']['ITEM_VALUE']['UF_FILE']['ID'],

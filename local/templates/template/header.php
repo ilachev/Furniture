@@ -14,10 +14,10 @@ $notShowViewed = $APPLICATION->GetProperty('not_show_viewed');
 <head>
     <? $APPLICATION->ShowHead(); ?>
     <?
-    Asset::getInstance()->addString('<meta content="' . SITE_TEMPLATE_PATH . 'browserconfig.xml" name="msapplication-config" />');
+    Asset::getInstance()->addString('<meta content="' . SITE_TEMPLATE_PATH . '/browserconfig.xml" name="msapplication-config" />');
     Asset::getInstance()->addString('<meta http-equiv="X-UA-Compatible" content="IE=edge">');
     Asset::getInstance()->addString('<meta name="viewport" content="width=device-width, initial-scale=1">');
-    Asset::getInstance()->addString('<link href="' . SITE_TEMPLATE_PATH . 'img/favicon.ico" rel="icon" type="image/png" />');
+    Asset::getInstance()->addString('<link href="' . SITE_TEMPLATE_PATH . '/img/favicon.ico" rel="icon" type="image/png" />');
     Asset::getInstance()->addString('<link rel="apple-touch-icon" sizes="107x107" href="' . SITE_TEMPLATE_PATH . '/img/apple-touch-icon.png" />');
     ?>
 	<title><? $APPLICATION->ShowTitle(); ?></title>
@@ -45,7 +45,7 @@ $notShowViewed = $APPLICATION->GetProperty('not_show_viewed');
 		<div class="loader-content"></div>
 		<div class="loader-text">Загрузка</div>
 	</div>
-    <? if (ERROR_404 != 'Y') { ?>
+    <? if (!defined('ERROR_404') || ERROR_404 != 'Y') { ?>
 		<header class="ui-header">
             <? $APPLICATION->IncludeComponent(
                 "bitrix:sale.basket.basket.line",

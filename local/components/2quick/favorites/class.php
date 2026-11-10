@@ -23,7 +23,7 @@ class TqFavorites extends \CBitrixComponent implements Controllerable
     {
         CModule::IncludeModule('iblock');
         global $USER;
-        $_SESSION['FAVORITES'] = array_diff($_SESSION['FAVORITES'], array(''));
+        $_SESSION['FAVORITES'] = array_diff((array)($_SESSION['FAVORITES'] ?? []), array(''));
         if (!empty($_SESSION['FAVORITES'])) {
             $select = Array(
                 'ID',

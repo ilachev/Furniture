@@ -160,7 +160,8 @@ class tqOrder extends \CBitrixComponent implements Controllerable
         $FORMATED_DISCOUNT_PRICE = str_replace('.', ' ', preg_replace($pattern, '$1<sup>$2</sup>$3', $discountPrice));
         $FORMATED_DELIVERY_PRICE = str_replace('.', ' ', preg_replace($pattern, '$1<sup>$2</sup>$3', $deliveryPrice));
 
-        $DISCOUNT_PERCENT = ($discountPrice / ($this->order->getPrice() + $deliveryPrice)) * 100;
+        $percentBase = $this->order->getPrice() + $deliveryPrice;
+        $DISCOUNT_PERCENT = $percentBase > 0 ? ($discountPrice / $percentBase) * 100 : 0;
         $CURRENCY = str_replace(0, '', CCurrencyLang::CurrencyFormat(0, $this->order->getCurrency(), true));
 
 

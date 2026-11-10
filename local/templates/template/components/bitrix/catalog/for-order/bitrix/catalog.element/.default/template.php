@@ -16,7 +16,7 @@ use \Bitrix\Main\Localization\Loc;
  */
 $this->setFrameMode(true);
 
-if (in_array($arResult['ID'], $arParams['FAVORITES'])) {
+if (in_array($arResult['ID'], (array)($arParams['FAVORITES'] ?? []))) {
     $fav_action = 'compfavdelete';
     $fav_act = ' is-active';
 } else {
@@ -164,7 +164,7 @@ if (in_array($arResult['ID'], $arParams['FAVORITES'])) {
 				</div>
             <? } ?>
 		</div>
-        <? if (!empty($arResult['PROPERTIES']['DISPLAY_PROPERTIES'])) { ?>
+        <? if (!empty($arResult['DISPLAY_PROPERTIES'])) { ?>
 			<div class="product-card_specifications-panel">
                 <? foreach ($arResult['CHUNKED_DISPLAY_PROPERTIES'] as $chunk) { ?>
 					<table class="product-card_specifications-table">

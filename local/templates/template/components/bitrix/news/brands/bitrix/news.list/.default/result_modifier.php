@@ -16,6 +16,7 @@ while ($ob = $res->Fetch()) {
         'link' => $APPLICATION->GetCurPageParam("symbol=$symbol", array("symbol"))
     ];
 }
+$arResult["ABCALF"] = $arResult["ABCALF"] ?? [];
 ksort($arResult["ABCALF"]);
 
 foreach ($arResult['ITEMS'] as &$arItem) {

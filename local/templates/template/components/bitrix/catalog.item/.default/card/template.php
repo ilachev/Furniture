@@ -24,7 +24,7 @@ use \Bitrix\Main\Localization\Loc;
  * @var CatalogSectionComponent $component
  */
 
-if (in_array($item['ID'], $arParams['FAVORITES'])) {
+if (in_array($item['ID'], (array)($arParams['FAVORITES'] ?? []))) {
     $fav_action = 'compfavdelete';
     $fav_act = ' is-active';
 } else {

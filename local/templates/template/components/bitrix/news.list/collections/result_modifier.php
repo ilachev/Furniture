@@ -36,9 +36,12 @@ if ($intBrandsIblockID) {
     }
 }
 
+$arResult['BRANDS'] = $arResult['BRANDS'] ?? [];
 foreach ($arResult['ITEMS'] as &$arItem) {
-    foreach ($arItem['PROPERTIES']['BRANDS']['VALUE'] as &$brandId) {
-        $arItem['BRANDS'][$brandId] = $arResult['BRANDS'][$brandId];
+    foreach (($arItem['PROPERTIES']['BRANDS']['VALUE'] ?? []) as $brandId) {
+        if (isset($arResult['BRANDS'][$brandId])) {
+            $arItem['BRANDS'][$brandId] = $arResult['BRANDS'][$brandId];
+        }
     }
 }
 unset($arItem, $brandId);

@@ -34,7 +34,7 @@ if (!empty($arResult['ITEMS'])) {
                         array("CONFIRM" => GetMessage('CT_BNL_ELEMENT_DELETE_CONFIRM')));
                     $picture = CFile::ResizeImageGet($arItem['PREVIEW_PICTURE']['ID'],
                                 ['width' => 657, 'height' => 509],
-                                BX_RESIZE_IMAGE_PROPRTIONAL
+                                BX_RESIZE_IMAGE_PROPORTIONAL
                             )['src'];
                     ?>
 	                <div class="col-md-6" id="<?= $this->GetEditAreaId($arItem['ID']); ?>">

@@ -1,0 +1,52 @@
+name: bitrix-furniture
+
+services:
+  web:
+    image: nginx:1.27-alpine
+    ports:
+      - "8080:80"
+    volumes:
+      - ./:/var/www/html
+      - core:/var/www/html/bitrix
+      - upload:/var/www/html/upload
+      - ./docker/nginx:/etc/nginx/conf.d:ro
+    depends_on:
+      - php
+
+  php:
+    build: ./docker/php
+    entrypoint: ["/bin/sh", "-c"]
+    command: ["chown www-data:www-data /var/www/html/bitrix /var/www/html/upload && exec php-fpm"]
+    volumes:
+      - ./:/var/www/html
+      - core:/var/www/html/bitrix
+      - upload:/var/www/html/upload
+      - ./docker/php/bitrix.ini:/usr/local/etc/php/conf.d/zz-bitrix.ini:ro
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: mariadb:10.11
+    environment:
+      MARIADB_ROOT_PASSWORD: root
+      MARIADB_DATABASE: bitrix
+      MARIADB_USER: bitrix
+      MARIADB_PASSWORD: bitrix
+    command:
+      - --character-set-server=utf8mb3
+      - --collation-server=utf8mb3_general_ci
+      - --sql-mode=NO_ENGINE_SUBSTITUTION
+      - --max_allowed_packet=64M
+    volumes:
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+volumes:
+  core:
+  upload:
+  db_data:

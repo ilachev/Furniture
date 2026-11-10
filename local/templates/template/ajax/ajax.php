@@ -91,7 +91,7 @@ if($request->isPost()) {
             echo json_encode($result);
             break;
         case 'countfavcomp':
-            echo json_encode(array('FAV'=>count($_SESSION['FAVORITE']),'COMP'=>count($_SESSION['COMPARE'])));
+            echo json_encode(array('FAV'=>count($_SESSION['FAVORITE'] ?? []),'COMP'=>count($_SESSION['COMPARE'] ?? [])));
             break;
         case 'q_sort':
             $count=$request->getPost('count');

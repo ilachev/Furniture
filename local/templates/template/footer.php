@@ -3,7 +3,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
     die();
 }
 ?>
-<? if (ERROR_404 != 'Y') { ?>
+<? if (!defined('ERROR_404') || ERROR_404 != 'Y') { ?>
     <? if ($page !== '/' && $notShowViewed !== 'Y') { ?>
         <? $APPLICATION->IncludeComponent(
             "bitrix:catalog.products.viewed",
@@ -128,7 +128,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
     ); ?>
 <? } ?>
 </main>
-<? if (ERROR_404 != 'Y') { ?>
+<? if (!defined('ERROR_404') || ERROR_404 != 'Y') { ?>
 	<!-- end main-content -->
 	<footer class="main-footer">
 		<div class="container">

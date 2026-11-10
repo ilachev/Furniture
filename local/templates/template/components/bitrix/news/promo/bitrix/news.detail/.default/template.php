@@ -14,7 +14,7 @@
 /** @var CBitrixComponent $component */
 $this->setFrameMode(true);
 
-if (in_array($arResult['PRODUCT']['ID'], $arParams['FAVORITES'])) {
+if (in_array($arResult['PRODUCT']['ID'], (array)($arParams['FAVORITES'] ?? []))) {
     $fav_action = 'compfavdelete';
     $fav_act = ' is-active';
 } else {

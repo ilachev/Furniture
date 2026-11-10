@@ -1,0 +1,7 @@
+/bitrix/
+/upload/
+/bitrixsetup.*
+/install.php
+/install.config
+/restore.php
+.DS_Store

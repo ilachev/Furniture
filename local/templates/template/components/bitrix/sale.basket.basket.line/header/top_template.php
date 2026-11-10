@@ -32,8 +32,8 @@ $compositeStub = (isset($arResult['COMPOSITE_STUB']) && $arResult['COMPOSITE_STU
 		</a>
 		<a href="/favorites/" class="head-fav">
 			<span class="ico-fav"></span>
-            <? if (count($_SESSION['FAVORITES']) > 0) { ?>
-				<span class="head-basket_number"><?= count($_SESSION['FAVORITES']); ?></span>
+            <? if (count($_SESSION['FAVORITES'] ?? []) > 0) { ?>
+				<span class="head-basket_number"><?= count($_SESSION['FAVORITES'] ?? []); ?></span>
             <? } ?>
 		</a>
 		<a href="<?= $arParams['PATH_TO_BASKET']; ?>" class="head-basket">

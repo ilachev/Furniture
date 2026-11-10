@@ -10,6 +10,13 @@ foreach($arLibs as $lib){
     }
 }
 
+foreach (['Basketclass', 'Tools'] as $ddsClass) {
+    $ddsFile = __DIR__ . '/include/dds/' . $ddsClass . '.php';
+    if (!class_exists('DDS\\' . $ddsClass) && is_file($ddsFile)) {
+        require_once $ddsFile;
+    }
+}
+
 AddEventHandler("iblock", "OnIBlockPropertyBuildList", array("CUserTypeSectionLink", "GetUserTypeDescription"));
 
 class CUserTypeSectionLink
@@ -17,7 +24,7 @@ class CUserTypeSectionLink
 
     private static $Script_included = false;
 
-    function GetUserTypeDescription()
+    public static function GetUserTypeDescription()
     {
         return array(
             "USER_TYPE_ID" => "SECTION_LINK",
@@ -36,7 +43,7 @@ class CUserTypeSectionLink
         return $value['VALUE'];
     }
 
-    public function GetPropertyFieldHtml($arProperty, $value, $strHTMLControlName)
+    public static function GetPropertyFieldHtml($arProperty, $value, $strHTMLControlName)
     {
 
         $sectionsList=array();
